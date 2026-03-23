@@ -5,18 +5,16 @@ using namespace std;
 
 int main()
 {
-    // إنشاء كائن من كلاس Student
+    // build object s1 from class Student
     Student s1(202301, "Hazem Abdelaziz", 3.8);
+    // add coursess to s1;
+    s1.enrollCourse("Fundamentals");
+    s1.enrollCourse("Backend");
+    s1.enrollCourse("Frontend");
+    // print all courses s1 has enrolle in it
+   s1.printCourses();
 
-    // طباعة البيانات للتأكد من عمل الـ Getters والوراثة
-    cout << "--- Student Information ---" << endl;
-    cout << "ID: " << s1.get_id() << endl;
-    cout << "Name: " << s1.get_name() << endl;
-    cout << "GPA: " << s1.get_gpa() << endl;
-
-    // اختبار تعديل البيانات باستخدام الـ Setters
-    s1.set_gpa(3.9);
-    cout << "\nUpdated GPA: " << s1.get_gpa() << endl;
+    
     return 0;
 }
 
