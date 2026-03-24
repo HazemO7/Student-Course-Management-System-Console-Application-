@@ -8,7 +8,7 @@ Student::Student() :Person() {
 	gpa = 0.0;
 }
 // prams constractor
-Student::Student(int sd, string sn, double g) :Person(sd, sn) {
+Student::Student(int sid, string sn, double g) :Person(sid, sn) {
 	gpa = g;
 }
 // enrollment method to allow student enrolle in courses
