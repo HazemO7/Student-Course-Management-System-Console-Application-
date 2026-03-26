@@ -1,7 +1,7 @@
 #include "SystemManger.h"
 using namespace std;
 
-// add student implemntaion
+// 1 add student implemntaion
 void SystemManger::addStudent() {
 	int id;
 	string name;
@@ -21,7 +21,39 @@ void SystemManger::addStudent() {
 	cout << "Student added successfully" << endl;
 }
 
-// show all student implementaion
+// 2 remove student implemntaion
+void SystemManger::removeStudent() {
+    int id ;
+    cout << "Enter the Student Id you want to remove: ";
+    cin >> id;
+    for (int i = 0; i < students.size(); i++) {
+        if (id == students[i].get_id()) {
+            students.erase(students.begin() + i);
+            cout << "Student remaoved successfully \n";
+            return;
+        }
+    }
+    cout << "Student not found";
+}
+
+// 3 find student implementaion
+void SystemManger::searchStudent() {
+    int id;
+    cout << "Enter Student Id you need to search: ";
+    cin >> id;
+    for (int i = 0; i < students.size(); i++) {
+        if (id == students[i].get_id()) {
+            cout << "///////// Student info //////////" << endl;
+            cout <<"ID: " << students[i].get_id() << endl;
+            cout <<"Name: " << students[i].get_name() << endl;
+            cout << "GPA: " << students[i].get_gpa() << endl;
+            return;
+        } 
+    }
+    cout << "Studnet not founde \n";
+}
+
+// 4 show all student implementaion
 void SystemManger::displayAllStudents() {
 
 		if (students.empty()) {
@@ -34,9 +66,54 @@ void SystemManger::displayAllStudents() {
 			cout << "ID: " << students[i].get_id() << endl;
 			cout << "Name: " << students[i].get_name() << endl;
 			cout << "GPA: " << students[i].get_gpa() << endl;
+            cout << "-----------------------------------------------\n";
 		}
 	}
+// 5 enroll studnets in courses
+void SystemManger::enrollStudent() {
+    int studentId;
+    cout << "Entre Student ID: ";
+    cin >> studentId;
+    for (int i = 0; i < students.size(); i++) {
+        if (studentId == students[i].get_id()) {
+            cout << "\n Enter course Name \n";
+            string courseName;
+            cin.ignore();
+            getline(cin, courseName);
+            students[i].enrollCourse(courseName);
+            cout << "Course added successfully" << endl;
+            return;
+        }
+    }
+    cout << "Student not found" << endl;
 
+}
+
+// 6 show students courses
+void SystemManger::showCourses() {
+    int id;
+    cout << "Enter student id: ";
+    cin >> id;
+    for (int i = 0; i < students.size(); i++) {
+        if (id == students[i].get_id()) {
+            cout << "\n Corses for this Studnet: \n";
+            students[i].printCourses();
+                return;
+        }
+    }
+    cout << "Student not found \n";
+}
+
+// 7 sort students by gpa
+void SystemManger::sortStudentsByGpa() {
+    sort(students.begin(), students.end(), [](Student& a, Student& b) {
+        return a.get_gpa() > b.get_gpa();
+        });
+    cout << "Students sorted successfully \n";
+    displayAllStudents();
+}
+
+// ////////////menu list ////////////////////
 void SystemManger::showMenu() {
         int choice;
 
@@ -58,11 +135,24 @@ void SystemManger::showMenu() {
             case 1:
                 addStudent();
                 break;
-
+            case 2:
+                removeStudent();
+                break;
+            case 3:
+                searchStudent();
+                break;
             case 4:
                 displayAllStudents();
                 break;
-
+            case 5:
+                enrollStudent();
+                break;
+            case 6:
+                showCourses();
+                break;
+            case 7:
+                sortStudentsByGpa();
+                break;
             case 8:
                 cout << "Exiting...\n";
                 return;
