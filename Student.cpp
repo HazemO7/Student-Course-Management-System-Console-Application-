@@ -13,6 +13,14 @@ Student::Student(int sid, string sn, double g) :Person(sid, sn) {
 }
 // enrollment method to allow student enrolle in courses
 void Student::enrollCourse(string coursName) {
+	// if course is already enrolled or not
+	for (int i= 0; i < courses.size(); i++) {
+		if (courses[i] == coursName) {
+			cout << "Student is already enrolled in this course";
+			return;
+		}
+	}
+
 	courses.push_back(coursName);
 }
 // print method-> ot print all courses student enroll it;
@@ -24,7 +32,7 @@ void Student::printCourses() {
 			cout << course<<endl;
 		}
 	}	
-};
+}
 
 
 void Student::set_gpa(double g) {

@@ -1,0 +1,4 @@
+echo ".vs/" > .gitignore
+echo "Debug/" >> .gitignore
+echo "x64/" >> .gitignore
+echo "*.exe" >> .gitignore
